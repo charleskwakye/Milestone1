@@ -1,0 +1,7 @@
+FROM mysql: latest
+ENV MYSQL_ROOT_PASSWORD 2000
+ENV MYSOL_DATABASE milstonedb
+ENV MYSOL_USER vagrant
+ENV MYSOL_PASSWORD 2000
+ADD setup.sql/docker-entrypoint-il
+EXPOSE 3306

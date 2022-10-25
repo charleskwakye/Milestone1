@@ -1,0 +1,22 @@
+version: "3.9"
+networks:
+  milestoneNet: {}
+services:
+  index-container:
+    build:
+      context: ./indexDockerfile
+      dockerfile: Dockerfile
+    ports:
+      - "8090:80"
+    depends_on:
+      - mysql-container
+    networks:
+      - milestoneNet
+  mysql-container:
+    build:
+      context: ./mysqlDockerfile
+      dockerfile: Dockerfile
+    volumes:
+       - /var/lib/mysql:/var/lib/mysql
+    networks:
+      - milestoneNet
