@@ -13,9 +13,11 @@ services:
     networks:
       - milestoneNet
   mysql-container:
-    build:
-      context: ./mysqlDockerfile
-      dockerfile: Dockerfile
+    image: mysql:latest
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: 2000
+      MYSQL_DATABASE: milestone1db
     volumes:
        - /var/lib/mysql:/var/lib/mysql
     networks:
