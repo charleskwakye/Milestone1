@@ -2,16 +2,6 @@ version: "3.9"
 networks:
   milestoneNet: {}
 services:
-  index-container:
-    build:
-      context: ./indexDockerfile
-      dockerfile: Dockerfile
-    ports:
-      - "8090:80"
-    depends_on:
-      - mysql-container
-    networks:
-      - milestoneNet
   php-container:
     build:
       context: ./phpDockerfile
@@ -22,6 +12,8 @@ services:
       - ./phpDockerfile:/var/www/html/
     ports:
       - 8000:80
+    networks:
+      - milestoneNet
   mysql-container:
     image: mysql
     command: --default-authentication-plugin=mysql_native_password
@@ -30,6 +22,14 @@ services:
       MYSQL_ROOT_PASSWORD: 2000
       MYSQL_DATABASE: milestone1db
     volumes:
-       - /db-data:/var/lib/mysql
+       - ./db-data/milestone1db.sql:/docker-entrypoint-initdb.d/init.sql
     networks:
       - milestoneNet
+  phpmyadmin:
+    depends_on:
+        - mysql-container
+    image: 'phpmyadmin:latest'
+    ports:
+       - "8060:80"
+    networks:
+       - milestoneNet
