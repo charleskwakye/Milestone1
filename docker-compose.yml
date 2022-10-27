@@ -22,7 +22,7 @@ services:
       MYSQL_ROOT_PASSWORD: 2000
       MYSQL_DATABASE: milestone1db
     volumes:
-       - ./db-data/milestone1db.sql:/docker-entrypoint-initdb.d
+       - ./db-data/milestone1db.sql:/docker-entrypoint-initdb.d/init.sql
     networks:
       - milestoneNet
   phpmyadmin:
