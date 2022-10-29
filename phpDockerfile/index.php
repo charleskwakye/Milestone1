@@ -10,4 +10,18 @@ if($conn->connect_error) {
     echo 'Connection failed: ' . $conn->connect_error;
 }
 echo "Connected to MySQL successfully!";
+
+$sql = 'SELECT * FROM users';
+
+$result = ($conn->query($sql));
+$row = [];
+if ($result->num_rows > 0)
+    {
+        // fetch all data from db into array
+        $row = $result->fetch_all(MYSQLI_ASSOC);
+    }
+
+
+echo $row[0]['name'];
+
 ?>
