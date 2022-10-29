@@ -2,19 +2,21 @@ version: "3.9"
 networks:
   milestoneNet: {}
 services:
-  php-container:
+  webserver:
+    container_name: contapa2-m1-CNK
     build:
       context: ./phpDockerfile
       dockerfile:  Dockerfile
     depends_on:
-      - mysql-container
+      - db
     volumes:
       - ./phpDockerfile:/var/www/html/
     ports:
-      - 8000:80
+      - 8085:80
     networks:
       - milestoneNet
-  mysql-container:
+  db:
+    container_name: contsql-m1-CNK
     image: mysql
     command: --default-authentication-plugin=mysql_native_password
     restart: always
@@ -28,7 +30,7 @@ services:
   phpmyadmin:
     image: 'phpmyadmin:latest'
     depends_on:
-        - mysql-container
+        - db
     ports:
        - "8060:80"
     restart: always

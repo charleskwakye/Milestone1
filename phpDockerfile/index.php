@@ -1,15 +1,9 @@
-<h1>Hello FCharles</h1>
 <?php
-$host = 'mysql-container';
+$host = 'db';
 $user = 'root';
 $pass = '2000';
 $db = 'milestone1db';
 $conn = new mysqli($host, $user, $pass,$db);
-
-if($conn->connect_error) {
-    echo 'Connection failed: ' . $conn->connect_error;
-}
-echo "Connected to MySQL successfully!";
 
 $sql = 'SELECT * FROM users';
 
@@ -22,6 +16,6 @@ if ($result->num_rows > 0)
     }
 
 
-echo $row[0]['name'];
+echo "<h1>" . $row[0]['name'] ." has reached Milestone 1!!</h1>";
 
 ?>
