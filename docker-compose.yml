@@ -28,6 +28,7 @@ services:
     networks:
       - milestoneNet
   phpmyadmin:
+    container_name: phpmyadmin
     image: 'phpmyadmin:latest'
     depends_on:
         - db
