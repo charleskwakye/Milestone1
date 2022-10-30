@@ -5,12 +5,12 @@ services:
   webserver:
     container_name: contapa2-m1-CNK
     build:
-      context: ./phpDockerfile
+      context: ./webserverdir
       dockerfile:  Dockerfile
     depends_on:
       - db
     volumes:
-      - ./phpDockerfile:/var/www/html/
+      - ./webserverdir:/var/www/html/
     ports:
       - 8085:80
     networks:
